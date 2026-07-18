@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: baali-patro/backend
+        working-directory: backend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: baali-patro/backend/requirements.txt
+          cache-dependency-path: backend/requirements.txt
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
@@ -36,14 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: baali-patro/frontend
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: baali-patro/frontend/package-lock.json
+          cache-dependency-path: frontend/package-lock.json
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Build (no live API required — data pages are force-dynamic)
@@ -57,5 +57,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build images
-        working-directory: baali-patro
+        working-directory: .
         run: docker compose build
