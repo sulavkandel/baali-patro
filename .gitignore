@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+.env
+node_modules/
+.next/
+out/
+*.log
+.pytest_cache/
+.DS_Store
+.venv/

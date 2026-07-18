@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Better Devanagari shaping: conjuncts, reph and half forms */
+:lang(ne) {
+  font-feature-settings: 'akhn' 1, 'rkrf' 1, 'half' 1;
+  line-height: 1.75;
+}
+
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

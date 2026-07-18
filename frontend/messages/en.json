@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "Baali-Patro",
+    "tagline": "Crop & weather calendar for Nepal's Terai",
+    "disclaimer": "Advisories are generated automatically from Open-Meteo forecasts and general NARC-style thresholds. Always confirm with your local agriculture office (Krishi Gyan Kendra) before making field decisions."
+  },
+  "nav": {
+    "home": "Home",
+    "advisory": "Advisories",
+    "about": "About",
+    "langToggle": "नेपाली",
+    "langToggleAria": "Switch language to Nepali"
+  },
+  "home": {
+    "heroTitle": "Know what your crop needs, week by week",
+    "heroSubtitle": "Stage-wise calendars for 6 major crops across 5 Terai districts, with weekly weather advisories.",
+    "pickerTitle": "Open a crop calendar",
+    "district": "District",
+    "crop": "Crop",
+    "go": "Open calendar",
+    "featuredTitle": "In season this week",
+    "featuredCta": "See full calendar",
+    "districtsTitle": "Browse by district",
+    "week": "Week"
+  },
+  "calendar": {
+    "title": "{crop} calendar — {district}",
+    "thisWeek": "This week",
+    "weekLabel": "Week {week}",
+    "stageLabel": "Stage",
+    "riskLabel": "Field note",
+    "legendTitle": "Growth stages",
+    "otherCrops": "Other crops in {district}",
+    "compareCta": "Compare with {crop}",
+    "forecastTitle": "7-day forecast",
+    "ribbonHelp": "Use arrow keys to move between weeks"
+  },
+  "stages": {
+    "fallow": "Fallow",
+    "land-prep": "Land preparation",
+    "sowing": "Sowing / planting",
+    "vegetative": "Vegetative",
+    "flowering": "Flowering",
+    "grain-fill": "Grain filling",
+    "harvest": "Harvest",
+    "post-harvest": "Post-harvest"
+  },
+  "compare": {
+    "title": "Compare crops — {district}",
+    "subtitle": "Stage timelines side by side, aligned to the same weeks.",
+    "cropA": "First crop",
+    "cropB": "Second crop",
+    "apply": "Compare",
+    "backToCalendar": "Back to calendar"
+  },
+  "advisory": {
+    "title": "Weekly weather advisories",
+    "subtitle": "Aggregated 7-day Open-Meteo forecast for each district, refreshed regularly.",
+    "forWeek": "ISO week {week}",
+    "generated": "Generated {date}",
+    "tmax": "Max temp",
+    "tmin": "Min temp",
+    "precip": "Rain (7-day)",
+    "unavailable": "Advisory is temporarily unavailable for this district. Please check back later.",
+    "viewCalendar": "View calendars"
+  },
+  "about": {
+    "title": "About Baali-Patro",
+    "whatTitle": "What is this?",
+    "whatBody": "Baali-Patro (बाली-पात्रो) is a bilingual crop-and-weather calendar for five Terai districts of Nepal — Kailali, Bardiya, Banke, Kapilvastu and Rupandehi. It shows week-by-week growth stages for paddy, wheat, maize, mustard, sugarcane and potato, and pairs them with automatically generated weekly weather advisories.",
+    "sourcesTitle": "Data sources",
+    "sourcesBody": "Calendar stage windows are compiled from public cropping-pattern guidance by MoALD, NARC and district agriculture offices, adjusted per district for the east-to-west monsoon gradient. Weather data comes from the Open-Meteo public forecast API using each district's headquarters coordinates.",
+    "limitsTitle": "Limitations",
+    "limitsBody": "Stage windows are indicative averages, not field prescriptions; actual dates shift with variety, irrigation and yearly climate. Advisories use simple thresholds and a 7-day horizon only. This tool does not replace local extension advice."
+  },
+  "footer": {
+    "dataBy": "Weather data by Open-Meteo",
+    "builtFor": "Built for Nepal's Terai farming communities"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The district or crop you asked for does not exist in Baali-Patro.",
+    "backHome": "Go to homepage"
+  }
+}
