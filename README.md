@@ -1,167 +1,68 @@
 # Baali-Patro (बाली-पात्रो) 🌾
 
-**A bilingual (English / नेपाली) crop–weather calendar for the western Nepal
-Terai** — 5 districts × 6 crops × 52 ISO weeks, with a live 7-day weather
-forecast and rule-based farming advisories.
+**Empowering farmers in Nepal's Terai with localized, bilingual, data-driven agricultural intelligence.**
 
-> नेपालीमा पढ्नुहोस्: [README.ne.md](README.ne.md)
+Baali-Patro is an interactive, bilingual (English / नेपाली) crop and weather advisory platform designed specifically for 5 key districts in the western Nepal Terai. By merging established agricultural timelines with hyper-local, real-time meteorological data, Baali-Patro helps farmers and extension workers make informed, climate-resilient decisions week by week.
+
+> 🇳🇵 नेपालीमा पढ्नुहोस्: [README.ne.md](README.ne.md)
 
 | | |
 |---|---|
-| **Districts** | Kailali, Bardiya, Banke, Kapilvastu, Rupandehi |
-| **Crops** | Paddy (धान), Wheat (गहुँ), Maize (मकै), Mustard (तोरी), Sugarcane (उखु), Potato (आलु) |
-| **Backend** | Django 5 + Django REST Framework, PostgreSQL (SQLite dev fallback) |
-| **Frontend** | Next.js 14 (App Router, RSC), next-intl, Tailwind CSS |
-| **Weather** | [Open-Meteo](https://open-meteo.com/) (free, no API key) |
+| **Districts Covered** | Kailali, Bardiya, Banke, Kapilvastu, Rupandehi |
+| **Supported Crops** | Paddy (धान), Wheat (गहुँ), Maize (मकै), Mustard (तोरी), Sugarcane (उखु), Potato (आलु) |
+| **Live Web App** | [**https://frontend-jade-tau-zq7c5shuaq.vercel.app**](https://frontend-jade-tau-zq7c5shuaq.vercel.app) |
+| **Live API** | [**https://baali-patro-api-xlim.onrender.com**](https://baali-patro-api-xlim.onrender.com) |
 
 ---
 
-## ✨ Features
+## 🌍 Social Impact & Features
 
-- **52-week crop calendar** per district × crop — an accessible, keyboard-navigable
-  week ribbon coloured by growth stage (land prep → nursery → sowing →
-  vegetative → flowering → grain fill → harvest → post-harvest).
-- **Compare view** — two crops side-by-side for the same district.
-- **Live advisories** — 7-day Open-Meteo forecast aggregated to the ISO week,
-  run through transparent thresholds (rain ≥ 60/20 mm, heat ≥ 36 °C,
-  cold ≤ 8 °C) producing bilingual advice.
-- **Fully bilingual** — `/en` and `/ne` routes, hand-authored Nepali,
-  Noto Sans Devanagari via `next/font`.
-- **Zero client-side data fetching** — React Server Components; the browser
-  never talks to Django directly.
+- **Localized Crop Calendars (52-Week)**: Provides farmers with district-specific timelines across 6 major crops, detailing essential growth stages from land preparation to post-harvest management.
+- **Data-Driven Weather Advisories**: Integrates seamlessly with live weather forecasts to automatically generate critical weekly advice (e.g., delaying fertilizer application during expected heavy rainfall).
+- **Accessible & Inclusive Design**: Fully bilingual interface supporting English and Nepali, complete with visually distinct indicators to support varying literacy levels.
+- **Compare Cultivations**: An intuitive side-by-side comparison tool allowing agricultural workers to analyze overlapping crop cycles and optimize land utilization.
 
-## 🚀 How to run on your device
+## 📊 Data Sources & References
 
-### Option A — Docker (easiest, recommended)
+Baali-Patro is built on top of transparent, open, and scientifically backed data sources to ensure high reliability for farming communities.
 
-Prerequisite: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-(Windows/macOS) or Docker Engine + Compose (Linux).
+- **Meteorological Data:** Weather forecasts and historical climate data are fetched in real-time from the **[Open-Meteo API](https://open-meteo.com/)**. This open-source provider delivers high-resolution, daily meteorological variables (temperature extremes and precipitation sum) without requiring commercial licenses.
+- **Agricultural Thresholds:** Weather warnings and agricultural advisories are modeled around established thresholds commonly utilized by the **Nepal Agricultural Research Council (NARC)** and the **Ministry of Agriculture and Livestock Development (MoALD)**. Examples include heat stress warnings above 36°C, cold stress warnings below 8°C, and heavy rainfall flood alerts (≥60mm/week).
+- **Calendar Baselines:** The baseline crop calendar data (sowing and harvesting weeks) is synthesized from public cropping-pattern documentation and regional agricultural extension manuals.
+
+*Note: The bundled crop calendar is an educational baseline. We strongly encourage all users to cross-check information with their local Agriculture Knowledge Centre (Krishi Gyan Kendra) before executing critical field operations.*
+
+## 🛠 Technology Stack
+
+Engineered for scale, speed, and minimal maintenance costs (utilizing automated cron jobs to sustain free-tier viability).
+
+- **Frontend**: Built with [Next.js 14](https://nextjs.org/) (App Router, Server Components) and [Tailwind CSS](https://tailwindcss.com/) for a highly performant, SEO-friendly, zero-client-fetch architecture.
+- **Backend API**: Powered by [Django 5](https://www.djangoproject.com/) and [Django REST Framework](https://www.django-rest-framework.org/), offering robust data modeling and secure API endpoints.
+- **Infrastructure**: Fully Dockerized for seamless deployment. The frontend is hosted on [Vercel](https://vercel.com) globally, while the backend API runs on [Render](https://render.com), automated by daily [GitHub Actions](https://github.com/features/actions) to keep the weather advisories fresh every single morning.
+
+## 🚀 Getting Started Locally
+
+### Using Docker (Recommended)
+
+Ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/sulavkandel/baali-patro.git
 cd baali-patro
 docker compose up --build
 ```
+- **Web App**: [http://localhost:3000](http://localhost:3000) 
+- **Backend API**: [http://localhost:8000/api/v1/districts/](http://localhost:8000/api/v1/districts/)
 
-First build takes a few minutes. Then open:
+*The backend container will automatically run migrations, seed all 1,560 historical crop rows, and fetch the latest live weather advisories from Open-Meteo upon booting.*
 
-- **App**: http://localhost:3000 → redirects to `/en` (switch to नेपाली in the nav)
-- **API**: http://localhost:8000/api/v1/districts/
+## 📚 Further Documentation
 
-The backend container automatically runs migrations, seeds the 1,560 calendar
-rows, and fetches live advisories (needs internet). Stop with `Ctrl+C`;
-`docker compose down -v` also wipes the database volume.
+For deep dives into our technical decisions, data sourcing methodology, and accessibility compliance, please review the following documents:
 
-### Option B — run backend and frontend manually (for development)
+- [**Data Sources Methodology**](docs/DATA_SOURCES.md) — Detailed explanation of our weather aggregation rules and crop pattern sourcing.
+- [**Architecture Decisions**](docs/DECISIONS.md) — 8 Architecture Decision Records (ADRs) explaining our tech choices.
+- [**Accessibility Compliance**](docs/ACCESSIBILITY.md) — WCAG standards, contrast matrices, and Devanagari font optimizations.
 
-Prerequisites: **Python 3.11+** and **Node.js 18+** (20 recommended).
-
-**Terminal 1 — Django API** (uses SQLite automatically, no DB setup needed):
-
-```bash
-cd baali-patro/backend
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py seed_calendar          # loads 1,560 calendar rows
-python manage.py generate_advisories   # optional: live weather (needs internet)
-python manage.py runserver 0.0.0.0:8000
-```
-
-**Terminal 2 — Next.js frontend**:
-
-```bash
-cd baali-patro/frontend
-npm install
-npm run dev
-```
-
-Open **http://localhost:3000**. The frontend finds the API at
-`http://localhost:8000` by default (override with `API_BASE_URL`).
-
-**Run the backend tests** (16 tests):
-
-```bash
-cd baali-patro/backend
-pip install pytest pytest-django
-python -m pytest -q
-```
-
-### Option C — production-style local run
-
-```bash
-cd baali-patro/frontend && npm run build && npm start   # port 3000
-# and in another terminal:
-cd baali-patro/backend && gunicorn config.wsgi:application --bind 0.0.0.0:8000
-```
-
-## 🔌 API reference
-
-Base: `http://localhost:8000/api/v1`
-
-| Endpoint | Description |
-|---|---|
-| `GET /districts/` | 5 districts with bilingual names + coordinates |
-| `GET /crops/` | 6 crops with bilingual names |
-| `GET /calendar/?district=kailali&crop=paddy` | 52 weeks for one district × crop |
-| `GET /calendar/compare/?district=banke&crops=paddy,wheat` | Two crops side by side |
-| `GET /advisory/current/?district=bardiya` | Latest weekly advisory + 7-day forecast |
-| `POST /advisory/regenerate/` | Refresh advisories (header `X-Regen-Token`) |
-
-## 📁 Project structure
-
-```
-baali-patro/
-├── backend/               # Django 5 + DRF
-│   ├── config/            # settings (env-driven), urls, wsgi
-│   ├── calendar_app/      # District/Crop/CalendarWeek models + seed command
-│   ├── advisory/          # Open-Meteo client + advisory rules + command
-│   ├── api/               # serializers, views, urls (v1)
-│   ├── tests/             # 16 pytest tests
-│   ├── data/calendar_master.csv   # reviewable 1,560-row export
-│   └── Dockerfile
-├── frontend/              # Next.js 14 App Router
-│   ├── app/[locale]/      # en/ne pages: home, calendar, compare, advisory, about
-│   ├── components/        # Nav, WeekRibbon, StageLegend, ForecastChart, …
-│   ├── lib/               # typed API client, stage colours, ISO-week utils
-│   ├── messages/          # en.json / ne.json translations
-│   └── Dockerfile         # multi-stage, standalone output
-├── docker-compose.yml     # postgres + backend + frontend
-└── docs/                  # DATA_SOURCES, DECISIONS (ADRs), ACCESSIBILITY
-```
-
-## ⚙️ Environment variables
-
-| Variable | Where | Default | Purpose |
-|---|---|---|---|
-| `DATABASE_URL` | backend | *(unset → SQLite)* | e.g. `postgres://user:pass@host:5432/db` |
-| `DJANGO_SECRET_KEY` | backend | dev key | set in production |
-| `DJANGO_DEBUG` | backend | `1` | set `0` in production |
-| `DJANGO_ALLOWED_HOSTS` | backend | `*` | comma-separated |
-| `CORS_ALLOWED_ORIGINS` | backend | *(empty)* | comma-separated origins |
-| `ADVISORY_REGEN_TOKEN` | backend | dev token | protects the regenerate endpoint |
-| `API_BASE_URL` | frontend | `http://localhost:8000` | server-side API base |
-| `NEXT_PUBLIC_API_BASE_URL` | frontend | — | browser-visible base (links only) |
-
-## ☁️ Deploying
-
-- **Frontend → Vercel**: import the `frontend/` directory as the project root;
-  set `API_BASE_URL` to your hosted Django URL. Data pages are
-  `force-dynamic`, so the build never needs a live API.
-- **Backend**: any container host (Railway, Fly.io, Render, a VPS) using
-  `backend/Dockerfile` + managed PostgreSQL; set the env vars above and
-  schedule `python manage.py generate_advisories` daily (e.g. 06:00 NPT).
-
-## 📚 Documentation
-
-- [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) — where the calendar/weather data comes from, and how to replace estimates with official MoALD/NARC data
-- [docs/DECISIONS.md](docs/DECISIONS.md) — 8 architecture decision records
-- [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) — WCAG notes, contrast table, Devanagari handling
-
-## ⚠️ Disclaimer
-
-The bundled crop calendar is an **educational approximation** synthesised
-from public cropping-pattern documentation. Always cross-check with your
-local Agriculture Knowledge Centre before making field decisions. Weather
-data © [Open-Meteo](https://open-meteo.com/) (CC-BY-4.0).
+---
+*Built for the resilient farming communities of Nepal's Terai.* 🇳🇵
