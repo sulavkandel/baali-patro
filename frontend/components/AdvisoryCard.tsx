@@ -53,19 +53,19 @@ export default async function AdvisoryCard({
         <div className="rounded bg-orange-50 p-2">
           <dt className="text-[11px] text-stone-600">{t('tmax')}</dt>
           <dd className="text-lg font-bold text-orange-700">
-            {nf.format(advisory.tmax_avg)}°C
+            {nf.format(advisory.tmax_avg_c)}°C
           </dd>
         </div>
         <div className="rounded bg-sky-50 p-2">
           <dt className="text-[11px] text-stone-600">{t('tmin')}</dt>
           <dd className="text-lg font-bold text-sky-700">
-            {nf.format(advisory.tmin_avg)}°C
+            {nf.format(advisory.tmin_avg_c)}°C
           </dd>
         </div>
         <div className="rounded bg-blue-50 p-2">
           <dt className="text-[11px] text-stone-600">{t('precip')}</dt>
           <dd className="text-lg font-bold text-blue-700">
-            {nf.format(advisory.precip_total)} mm
+            {nf.format(advisory.precip_total_mm)} mm
           </dd>
         </div>
       </dl>

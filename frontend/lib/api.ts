@@ -60,9 +60,9 @@ export interface Advisory {
   district: string;
   for_week: number;
   week_start: string;
-  tmax_avg: number;
-  tmin_avg: number;
-  precip_total: number;
+  tmax_avg_c: number;
+  tmin_avg_c: number;
+  precip_total_mm: number;
   summary_en: string;
   summary_ne: string;
   daily: DailyForecast[];
